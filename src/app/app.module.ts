@@ -7,6 +7,13 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './home/about/about.component';
 import { StudyComponent } from './home/study/study.component';
 import { TestComponent } from './home/test/test.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatTabsModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -14,11 +21,20 @@ import { TestComponent } from './home/test/test.component';
     HomeComponent,
     AboutComponent,
     StudyComponent,
-    TestComponent
+    TestComponent,
+    HeaderComponent,
+    SidenavListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatTabsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
