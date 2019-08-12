@@ -1,0 +1,8 @@
+:host /deep/ .mat-card-header-text {
+  margin: 0px;
+}
+
+.howToCard, .teFormPanel {
+  margin-bottom: 0.3%;
+  margin-top: 0.3%;
+}

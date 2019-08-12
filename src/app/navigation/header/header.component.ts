@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatIconRegistry } from '@angular/material';
+import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
+// import { MatIconRegistry } from '@angular/material';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +8,15 @@ import { MatIconRegistry } from '@angular/material';
 })
 export class HeaderComponent implements OnInit {
 
+  @Output() public sidenavToggle = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public onToggleSidenav = () => {
+    this.sidenavToggle.emit();
   }
 
 }
