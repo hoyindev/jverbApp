@@ -14,6 +14,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatTabsModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule, MatCardModule } from '@angular/material';
 import { MatListModule, MatExpansionModule } from '@angular/material';
+import { VerbsComponent } from './home/verbs/verbs.component';
+import { VerbsDetailsComponent } from './home/verbs/verbs-details/verbs-details.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { MatListModule, MatExpansionModule } from '@angular/material';
     TestComponent,
     HeaderComponent,
     SidenavListComponent,
+    VerbsComponent,
+    VerbsDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,21 @@
 <mat-nav-list>
-  <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
-      <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
-  </a>
-  <a mat-list-item routerLink="/about" (click)="onSidenavClose()">
-      <mat-icon>account_box</mat-icon> <span class="nav-caption">About</span>   
-  </a>
-  <a mat-list-item routerLink="/study" (click)="onSidenavClose()">
-      <mat-icon>translate</mat-icon><span class="nav-caption">Study</span>
-  </a>
-  <a mat-list-item routerLink="/test" (click)="onSidenavClose()">
-    <mat-icon>grade</mat-icon><span class="nav-caption">Test</span>
-</a>
+    <a mat-list-item routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        (click)="onSidenavClose()">
+        <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
+    </a>
+    <a mat-list-item routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        (click)="onSidenavClose()">
+        <mat-icon>account_box</mat-icon> <span class="nav-caption">About</span>
+    </a>
+    <a mat-list-item routerLink="/study" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        (click)="onSidenavClose()">
+        <mat-icon>translate</mat-icon><span class="nav-caption">Study</span>
+    </a>
+    <a mat-list-item routerLink="/test" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        (click)="onSidenavClose()">
+        <mat-icon>grade</mat-icon><span class="nav-caption">Test</span>
+    </a>
+    <a mat-list-item routerLink="/verbs" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"  (click)="onSidenavClose()">
+        <mat-icon>folder_open</mat-icon><span class="nav-caption">Verbs</span>
+    </a>
 </mat-nav-list>
