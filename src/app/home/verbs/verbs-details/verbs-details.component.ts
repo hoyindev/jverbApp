@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Verb } from 'src/app/verb';
 import { VerbService } from 'src/app/verb.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-verbs-details',
@@ -35,5 +36,7 @@ export class VerbsDetailsComponent implements OnInit {
     const paraid: number = Number(id);
     return paraid;
   }
+
+  updateVerb(form: NgForm) {}
 
 }

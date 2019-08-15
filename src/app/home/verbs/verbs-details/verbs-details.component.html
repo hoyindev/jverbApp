@@ -1,8 +1,32 @@
-<p>verbs-details works!</p>
+<!-- <p>verbs-details works!</p>
 
 <div *ngIf="isDataLoaded">
   <p>{{verb.verbId}}</p>
   <p>{{verb.verbEng}}</p>
   <p>{{verb.verbJap}}</p>
   <p>{{verb.verbTeForm}}</p>
-</div>
+</div> -->
+
+<form class="updateForm" *ngIf="isDataLoaded" (submit)="updateVerb(verbForm)" #verbForm="ngForm">
+  <div class="form-container">
+    <mat-form-field>
+      <input matInput value={{verb.verbId}} placeholder="ID">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput value={{verb.verbEng}} placeholder="English">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput value={{verb.verbJap}} placeholder="Japanese">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput value={{verb.verbTeForm}} placeholder="Te Form">
+    </mat-form-field>
+
+    <p>
+      <button mat-raised-button color="accent" type="submit">Update</button>
+    </p>
+  </div>
+</form>
