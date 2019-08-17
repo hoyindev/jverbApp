@@ -17,9 +17,6 @@ export class VerbsDetailsComponent implements OnInit {
   isDataLoaded = false;
   formGroup: FormGroup;
   submitted = false;
-  patternId = '^[0-9]*$';
-  patternEng = '^[a-zA-Z0-9 \W\S]+$';
-  patternJap = '^[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+[々〆〤]$';
 
   constructor(private verbService: VerbService, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
@@ -27,9 +24,9 @@ export class VerbsDetailsComponent implements OnInit {
     this.verbService.getVerbById(this.getParaId()).subscribe(
       data => {
         this.data = data;
-        console.log(JSON.stringify(this.data[0]));
+        // console.log(JSON.stringify(this.data[0]));
         this.verb = this.data[0];
-        console.log(JSON.stringify(this.verb));
+        // console.log(JSON.stringify(this.verb));
         // console.log(JSON.stringify(this.verb[0].verbEng));
         // this.verbe = this.verb[0].verbEng;
         this.isDataLoaded = true;
@@ -69,7 +66,7 @@ export class VerbsDetailsComponent implements OnInit {
         verbJap: form.value.formVerbJap,
         verbTeForm: form.value.formVerbTeForm
       };
-      console.log('form: id ' + input.verbId);
+      // console.log('form: id ' + input.verbId);
 
 
       this.verbService.updateVerb(input).subscribe(data => {
