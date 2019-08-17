@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Verb } from './verb';
 
 @Injectable({
@@ -8,12 +8,24 @@ import { Verb } from './verb';
 export class VerbService {
 
   apiURL = 'https://secure-anchorage-23083.herokuapp.com/api';
+  CORSproxyURL = 'https://cors-anywhere.herokuapp.com/';
 
   constructor(private httpClient: HttpClient) { }
 
   public createVerb(verb: Verb) { }
 
-  public updateVerb(verb: Verb) { }
+  public updateVerb(verb: Verb) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    const body = JSON.stringify(verb);
+    console.log('service update body:' + body);
+    console.log(verb);
+    
+    return this.httpClient.put(`${this.CORSproxyURL + this.apiURL + '/verbs/' + verb.verbId}`, body, options);
+   }
 
   public deleteVerb(id: Verb) { }
 
