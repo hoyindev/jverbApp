@@ -26,7 +26,7 @@ export class VerbsComponent implements OnInit, AfterViewInit {
   constructor(private verbService: VerbService, private route: Router, private formBuilder: FormBuilder) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  // @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild('tabGroup', { static: true }) tabGroup: any;
 
 
@@ -35,17 +35,20 @@ export class VerbsComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.startUp();
     console.log(this.tabGroup);
+
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    //   this.dataSource.sort = this.sort;
-    //   console.log(this.dataSource.sort);
+    // this.dataSource.sort = this.sort;
+    console.log(this.dataSource.sort);
   }
 
   startUp() {
     this.verbService.getVerbs().subscribe(
       data => { this.dataSource.data = data; });
+
+    this.dataSource.sort = this.sort;
 
     this.formGroup = this.formBuilder.group({
       formVerbEng: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 \)\(\W\S]+$')]],
@@ -60,10 +63,10 @@ export class VerbsComponent implements OnInit, AfterViewInit {
   }
 
   insertVerb(form: NgForm) {
-    console.log('btn clicked');
+    // console.log('btn clicked');
     this.submitted = true;
     if (this.formGroup.invalid) {
-      console.log('invalid');
+      // console.log('invalid');
       return;
     }
 
@@ -74,25 +77,16 @@ export class VerbsComponent implements OnInit, AfterViewInit {
         verbJap: form.value.formVerbJap,
         verbTeForm: form.value.formVerbTeForm
       };
-      console.log('form: id ' + input.verbId);
-
-
+      // console.log('form: id ' + input.verbId);
       this.verbService.insertVerb(input).subscribe(data => {
         alert('success');
         form.resetForm();
-        // this.route.navigate(['/verbs']);
-        // this.startUp();
-        // this.selectedIndex = 0;
         window.location.reload();
-        
       });
 
     }
   }
 
-  public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-    this.selectedIndex = tabChangeEvent.index;
-    console.log(this.tabGroup.selectedIndex);
-}
+
 
 }

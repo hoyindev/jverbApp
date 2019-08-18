@@ -17,7 +17,7 @@ import { VerbsDetailsComponent } from './home/verbs/verbs-details/verbs-details.
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatTabsModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatButtonModule, MatCardModule } from '@angular/material';
-import { MatListModule, MatExpansionModule, MatPaginatorModule } from '@angular/material';
+import { MatListModule, MatExpansionModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -55,7 +55,8 @@ import {MatInputModule} from '@angular/material/input';
     MatTableModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
