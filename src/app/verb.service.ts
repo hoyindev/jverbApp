@@ -12,7 +12,17 @@ export class VerbService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public createVerb(verb: Verb) { }
+  public insertVerb(verb: Verb) { 
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    const body = JSON.stringify(verb);
+    console.log(body);
+    return this.httpClient.post(`${this.CORSproxyURL + this.apiURL + '/verbs/'}`, body, options);
+
+  }
 
   public updateVerb(verb: Verb) {
     const options = {

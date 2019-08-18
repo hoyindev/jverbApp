@@ -1,68 +1,111 @@
-<!-- <div class="container py-5">  
-    <h3 class="text-center text-uppercase">List of verbs</h3>  
-    <table class="table table-bordered table-striped">  
-        <thead>  
-            <tr class="text-center text-uppercase">  
-                <th> ID</th>  
-                <th> word in English</th>  
-                <th>verb in Japanese</th>  
-                <th>Te Form</th>                  
-              </tr>  
-        </thead>  
-        <tbody>  
-          <tr *ngFor="let verb of verbs">  
-            <td>{{verb.verbId}}</td>  
-            <td>{{verb.verbEng}}</td>  
-            <td>{{verb.verbJap}}</td>  
-            <td>{{verb.verbTe}}</td>          
-          </tr>  
-        </tbody>  
-      </table>  
-    </div>   -->
+<mat-tab-group #tabGroup [selectedIndex]="selectedIndex" (selectedTabChange)="tabChanged($event)">
+  <mat-tab label="Database">
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>Database: Verbs</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
 
-    
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-      <!-- customerID Column -->
-      <ng-container matColumnDef="ID">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-        <td mat-cell *matCellDef="let verb"> {{verb.verbId}} </td>
-      </ng-container>
-  
-      <!-- First Name Column -->
-      <ng-container matColumnDef="English">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> English </th>
-        <td mat-cell *matCellDef="let verb"> {{verb.verbEng}} </td>
-      </ng-container>
-  
-      <!-- Last Name Column -->
-      <ng-container matColumnDef="Japanese">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Japanese </th>
-        <td mat-cell *matCellDef="let verb"> {{verb.verbJap}} </td>
-      </ng-container>
-  
-      <!-- DOB Column -->
-      <ng-container matColumnDef="Te Form">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Te Form </th>
-        <td mat-cell *matCellDef="let verb"> {{verb.verbTeForm}} </td>
-      </ng-container>
-  
-      <!-- <ng-container matColumnDef="action">
+          <!-- ID Column -->
+          <ng-container matColumnDef="ID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td mat-cell *matCellDef="let verb"> {{verb.verbId}} </td>
+          </ng-container>
+
+          <!-- Eng Column -->
+          <ng-container matColumnDef="English">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> English </th>
+            <td mat-cell *matCellDef="let verb"> {{verb.verbEng}} </td>
+          </ng-container>
+
+          <!-- Jap Column -->
+          <ng-container matColumnDef="Japanese">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Japanese </th>
+            <td mat-cell *matCellDef="let verb"> {{verb.verbJap}} </td>
+          </ng-container>
+
+          <!-- Te form Column -->
+          <ng-container matColumnDef="Te Form">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Te Form </th>
+            <td mat-cell *matCellDef="let verb"> {{verb.verbTeForm}} </td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>action
         </th> -->
-        <!-- <td mat-cell *matCellDef="let row">
+          <!-- <td mat-cell *matCellDef="let row">
           <button id="deletebtn" mat-flat-button color="warn" (click)="deleteClick(row, $event)">Delete</button>
         </td> -->
-      <!-- </ng-container> -->
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row (click)="selectRow(row)" *matRowDef="let row; columns: displayedColumns;">
-        <!-- (click)="selection.toggle(row)"  -->
-        
-        
-  
-      
-    </table>
-  
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  <!-- </div> -->
+          <!-- </ng-container> -->
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row (click)="selectRow(row)" *matRowDef="let row; columns: displayedColumns;">
+
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
+  <mat-tab label="Insert a new word">
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>Insert a new word</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <!-- form starts from here  -->
+        <form class="insertForm" (submit)="insertVerb(verbForm)" #verbForm="ngForm" [formGroup]="formGroup">
+          <div class="form-container">
+            <mat-form-field>
+              <input matInput formControlName="formVerbEng" placeholder="English">
+              <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbEng.errors">
+                <div *ngIf="formGroup.controls.formVerbEng.errors.required">verb in English is required</div>
+                <div *ngIf="formGroup.controls.formVerbEng.errors.pattern">
+                  input pattern Not valid
+                </div>
+              </div>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput formControlName="formVerbJap" placeholder="Japanese">
+              <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbJap.errors">
+                <div *ngIf="formGroup.controls.formVerbJap.errors.required">verb in Japanese is required</div>
+                <div *ngIf="formGroup.controls.formVerbJap.errors.pattern">
+                  input pattern Not valid
+                </div>
+              </div>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput formControlName="formVerbTeForm" placeholder="Te Form">
+              <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbTeForm.errors">
+                <div *ngIf="formGroup.controls.formVerbTeForm.errors.required">verb in Te form is required</div>
+                <div *ngIf="formGroup.controls.formVerbTeForm.errors.pattern">
+                  input pattern Not valid
+                </div>
+              </div>
+
+            </mat-form-field>
+
+            <p>
+              <button mat-raised-button color="accent" type="submit">Insert</button>
+            </p>
+          </div>
+        </form>
+
+
+        <!-- form end here  -->
+
+
+
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
+
+
+</mat-tab-group>

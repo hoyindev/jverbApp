@@ -1,52 +1,50 @@
 <form class="updateForm" *ngIf="isDataLoaded" (submit)="updateVerb(verbForm)" #verbForm="ngForm"
-  [formGroup]="formGroup">
-  <div class="form-container">
+[formGroup]="formGroup">
+<div class="form-container">
 
-
-
-    <mat-form-field>
-      <input matInput formControlName="formVerbId" placeholder="ID">
-      <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbId.errors">
-        <div *ngIf="formGroup.controls.formVerbId.errors.required">verb id is required</div>
-        <div *ngIf="formGroup.controls.formVerbId.errors.pattern">
-          input pattern Not valid
-        </div>
+  <mat-form-field>
+    <input matInput formControlName="formVerbId" placeholder="ID">
+    <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbId.errors">
+      <div *ngIf="formGroup.controls.formVerbId.errors.required">verb id is required</div>
+      <div *ngIf="formGroup.controls.formVerbId.errors.pattern">
+        input pattern Not valid
       </div>
-    </mat-form-field>
+    </div>
+  </mat-form-field>
 
-    <mat-form-field>
-      <input matInput formControlName="formVerbEng" placeholder="English">
-      <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbEng.errors">
-        <div *ngIf="formGroup.controls.formVerbEng.errors.required">verb in English is required</div>
-        <div *ngIf="formGroup.controls.formVerbEng.errors.pattern">
-          input pattern Not valid
-        </div>
+  <mat-form-field>
+    <input matInput formControlName="formVerbEng" placeholder="English">
+    <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbEng.errors">
+      <div *ngIf="formGroup.controls.formVerbEng.errors.required">verb in English is required</div>
+      <div *ngIf="formGroup.controls.formVerbEng.errors.pattern">
+        input pattern Not valid
       </div>
-    </mat-form-field>
+    </div>
+  </mat-form-field>
 
-    <mat-form-field>
-      <input matInput formControlName="formVerbJap" placeholder="Japanese">
-      <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbJap.errors">
-        <div *ngIf="formGroup.controls.formVerbJap.errors.required">verb in Japanese is required</div>
-        <div *ngIf="formGroup.controls.formVerbJap.errors.pattern">
-          input pattern Not valid
-        </div>
+  <mat-form-field>
+    <input matInput formControlName="formVerbJap" placeholder="Japanese">
+    <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbJap.errors">
+      <div *ngIf="formGroup.controls.formVerbJap.errors.required">verb in Japanese is required</div>
+      <div *ngIf="formGroup.controls.formVerbJap.errors.pattern">
+        input pattern Not valid
       </div>
-    </mat-form-field>
+    </div>
+  </mat-form-field>
 
-    <mat-form-field>
-      <input matInput formControlName="formVerbTeForm" placeholder="Te Form">
-      <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbTeForm.errors">
-        <div *ngIf="formGroup.controls.formVerbTeForm.errors.required">verb in Te form is required</div>
-        <div *ngIf="formGroup.controls.formVerbTeForm.errors.pattern">
-          input pattern Not valid
-        </div>
+  <mat-form-field>
+    <input matInput formControlName="formVerbTeForm" placeholder="Te Form">
+    <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbTeForm.errors">
+      <div *ngIf="formGroup.controls.formVerbTeForm.errors.required">verb in Te form is required</div>
+      <div *ngIf="formGroup.controls.formVerbTeForm.errors.pattern">
+        input pattern Not valid
       </div>
+    </div>
 
-    </mat-form-field>
+  </mat-form-field>
 
-    <p>
-      <button mat-raised-button color="accent" type="submit">Update</button>
-    </p>
-  </div>
+  <p>
+    <button mat-raised-button color="accent" type="submit">Update</button>
+  </p>
+</div>
 </form>

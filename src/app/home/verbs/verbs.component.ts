@@ -5,7 +5,9 @@ import { Verb } from 'src/app/verb';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-verbs',
@@ -17,28 +19,80 @@ export class VerbsComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['ID', 'English', 'Japanese', 'Te Form'];
   dataSource = new MatTableDataSource<Verb>();
+  formGroup: FormGroup;
+  submitted = false;
+  selectedIndex: number;
 
-  constructor(private verbService: VerbService, private route: Router) { }
+  constructor(private verbService: VerbService, private route: Router, private formBuilder: FormBuilder) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  // @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild('tabGroup', { static: true }) tabGroup: any;
 
 
   // verbs: Verb[];
 
   ngOnInit() {
-    this.verbService.getVerbs().subscribe(
-      data => { this.dataSource.data = data; });
+    this.startUp();
+    console.log(this.tabGroup);
   }
 
   ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  //   console.log(this.dataSource.sort);
+    this.dataSource.paginator = this.paginator;
+    //   this.dataSource.sort = this.sort;
+    //   console.log(this.dataSource.sort);
   }
+
+  startUp() {
+    this.verbService.getVerbs().subscribe(
+      data => { this.dataSource.data = data; });
+
+    this.formGroup = this.formBuilder.group({
+      formVerbEng: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 \)\(\W\S]+$')]],
+      formVerbJap: ['', [Validators.required, Validators.pattern('^[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+[々〆〤]$')]],
+      formVerbTeForm: ['', [Validators.required, Validators.pattern('^[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+[々〆〤]$')]]
+    });
+  }
+
 
   selectRow(row) {
     this.route.navigate(['verbs/' + row.verbId]);
   }
+
+  insertVerb(form: NgForm) {
+    console.log('btn clicked');
+    this.submitted = true;
+    if (this.formGroup.invalid) {
+      console.log('invalid');
+      return;
+    }
+
+    if (!form.invalid) {
+      const input: Verb = {
+        verbId: form.value.formVerbId,
+        verbEng: form.value.formVerbEng,
+        verbJap: form.value.formVerbJap,
+        verbTeForm: form.value.formVerbTeForm
+      };
+      console.log('form: id ' + input.verbId);
+
+
+      this.verbService.insertVerb(input).subscribe(data => {
+        alert('success');
+        form.resetForm();
+        // this.route.navigate(['/verbs']);
+        // this.startUp();
+        // this.selectedIndex = 0;
+        window.location.reload();
+        
+      });
+
+    }
+  }
+
+  public tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+    this.selectedIndex = tabChangeEvent.index;
+    console.log(this.tabGroup.selectedIndex);
+}
 
 }
