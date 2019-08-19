@@ -12,14 +12,14 @@ export class VerbService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public insertVerb(verb: Verb) { 
+  public insertVerb(verb: Verb) {
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
     const body = JSON.stringify(verb);
-    console.log(body);
+    // console.log(body);
     return this.httpClient.post(`${this.CORSproxyURL + this.apiURL + '/verbs/'}`, body, options);
 
   }
@@ -31,13 +31,21 @@ export class VerbService {
       })
     };
     const body = JSON.stringify(verb);
-    console.log('service update body:' + body);
-    console.log(verb);
+    // console.log('service update body:' + body);
+    // console.log(verb);
 
     return this.httpClient.put(`${this.CORSproxyURL + this.apiURL + '/verbs/' + verb.verbId}`, body, options);
   }
 
-  public deleteVerb(id: Verb) { }
+  public deleteVerb(id: number) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    // console.log(id);
+    return this.httpClient.delete(`${this.CORSproxyURL + this.apiURL + '/verbs/' + id}`, options);
+  }
 
   public getVerbById(id: number) {
     // console.log('getid: ' + id + `${this.apiURL + '/verbs/' + id}`);

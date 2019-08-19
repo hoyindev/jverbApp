@@ -6,8 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgForm } from '@angular/forms';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-verbs',
@@ -17,7 +17,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 })
 export class VerbsComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['ID', 'English', 'Japanese', 'Te Form'];
+  displayedColumns: string[] = ['verbId', 'verbEng', 'verbJap', 'verbTeForm'];
   dataSource = new MatTableDataSource<Verb>();
   formGroup: FormGroup;
   submitted = false;
@@ -27,14 +27,14 @@ export class VerbsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild('tabGroup', { static: true }) tabGroup: any;
+
 
 
   // verbs: Verb[];
 
   ngOnInit() {
     this.startUp();
-    console.log(this.tabGroup);
+
 
   }
 

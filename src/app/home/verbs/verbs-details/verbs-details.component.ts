@@ -28,7 +28,6 @@ export class VerbsDetailsComponent implements OnInit {
         this.verb = this.data[0];
         // console.log(JSON.stringify(this.verb));
         // console.log(JSON.stringify(this.verb[0].verbEng));
-        // this.verbe = this.verb[0].verbEng;
         this.isDataLoaded = true;
 
         // initiate the form after the data is fetehed
@@ -67,14 +66,21 @@ export class VerbsDetailsComponent implements OnInit {
         verbTeForm: form.value.formVerbTeForm
       };
       // console.log('form: id ' + input.verbId);
-
-
       this.verbService.updateVerb(input).subscribe(data => {
         alert('success');
+        form.resetForm();
+        this.router.navigate(['/verbs']);
       });
-      form.resetForm();
-      this.router.navigate(['/verbs']);
     }
+  }
+
+  deleteClick() {
+    // console.log('delete : ' + this.verb.verbId + ' ' + this.verb.verbEng);
+    this.verbService.deleteVerb(this.verb.verbId).subscribe(data => {
+      alert('delete completed');
+      this.router.navigate(['/verbs']);
+    });
+
   }
 }
 
