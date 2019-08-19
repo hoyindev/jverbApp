@@ -1,1 +1,12 @@
 <p>test works!</p>
+<p>total number of verbs in this test: {{verbTotalNumber}}</p>
+<p>number of verbs you tested: {{verbNumberTested}}</p>
+<p>number of verbs left: {{verbNumberLeft}}</p>
+
+<h3>Test</h3>
+<div *ngIf="isDataLoaded">
+  <p>{{verbArrayForTest[0].verbId}}</p>
+  <p>{{verbArrayForTest[0].verbEng}}</p>
+  <p>{{verbArrayForTest[0].verbJap}}</p>
+  <p>{{verbArrayForTest[0].verbTeForm}}</p>
+</div>

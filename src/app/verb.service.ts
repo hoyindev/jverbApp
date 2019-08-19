@@ -53,7 +53,7 @@ export class VerbService {
   }
 
   public getVerbs() {
-    return this.httpClient.get<Verb[]>(`${this.apiURL}/verbs`);
+    return this.httpClient.get<[Verb]>(`${this.apiURL}/verbs`);
   }
 
 }

@@ -28,27 +28,19 @@ export class VerbsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-
-
-  // verbs: Verb[];
-
   ngOnInit() {
     this.startUp();
-
-
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-    console.log(this.dataSource.sort);
+    this.dataSource.sort = this.sort;
+    // console.log(this.dataSource.sort);
   }
 
   startUp() {
     this.verbService.getVerbs().subscribe(
       data => { this.dataSource.data = data; });
-
-    this.dataSource.sort = this.sort;
 
     this.formGroup = this.formBuilder.group({
       formVerbEng: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 \)\(\W\S]+$')]],
