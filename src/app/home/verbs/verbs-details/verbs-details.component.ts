@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-verbs-details',
   templateUrl: './verbs-details.component.html',

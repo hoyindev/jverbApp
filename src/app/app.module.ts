@@ -22,6 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 @NgModule({
@@ -56,7 +59,10 @@ import {MatInputModule} from '@angular/material/input';
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    MatSliderModule,
+    MatCheckboxModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
