@@ -33,7 +33,7 @@ export class VerbsDetailsComponent implements OnInit {
 
         // initiate the form after the data is fetehed
         this.formGroup = this.formBuilder.group({
-          formVerbId: new FormControl(this.verb.verbId, [Validators.required, Validators.pattern('^[0-9]*$')]),
+          // formVerbId: new FormControl(this.verb.verbId, [Validators.required, Validators.pattern('^[0-9]*$')]),
           formVerbEng: [this.verb.verbEng, [Validators.required, Validators.pattern('^[a-zA-Z0-9 \)\(\W\S]+$')]],
           formVerbJap: [this.verb.verbJap, [Validators.required, Validators.pattern('^[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+[々〆〤]$')]],
           formVerbTeForm: [this.verb.verbTeForm, [Validators.required, Validators.pattern('^[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+[々〆〤]$')]]

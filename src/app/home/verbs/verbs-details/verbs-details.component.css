@@ -7,3 +7,12 @@
   width: 100%;
 }
 
+.btn {
+  display: inline;
+  margin-right: 1%;
+   
+}
+
+button {
+  width: 70px;
+}

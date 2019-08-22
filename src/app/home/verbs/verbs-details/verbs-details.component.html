@@ -1,7 +1,7 @@
 <form class="updateForm" *ngIf="isDataLoaded" (submit)="updateVerb(verbForm)" #verbForm="ngForm"
   [formGroup]="formGroup">
   <div class="form-container">
-
+<!-- 
     <mat-form-field>
       <input matInput formControlName="formVerbId" placeholder="ID">
       <div *ngIf="submitted &amp;&amp; formGroup.controls.formVerbId.errors">
@@ -10,7 +10,9 @@
           input pattern Not valid
         </div>
       </div>
-    </mat-form-field>
+    </mat-form-field> -->
+
+    <p>ID: {{verb.verbId}}</p>
 
     <mat-form-field>
       <input matInput formControlName="formVerbEng" placeholder="English">
@@ -43,12 +45,11 @@
 
     </mat-form-field>
   </div>
-    <p>
+    <p class="btn">
       <button mat-raised-button color="accent" type="submit">Update</button>
-    </p>
-  
+    </p>  
+    <p class="btn">
+        <button mat-raised-button type="button" color="accent" (click)="deleteClick()">Delete</button>
+      </p>
 </form>
 
-<p>
-  <button mat-raised-button color="accent" (click)="deleteClick()">Delete</button>
-</p>
