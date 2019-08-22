@@ -39,11 +39,6 @@ export class VerbsDetailsComponent implements OnInit {
           formVerbTeForm: [this.verb.verbTeForm, [Validators.required, Validators.pattern('^[一-龠]+|[ぁ-ゔ]+|[ァ-ヴー]+[々〆〤]$')]]
         });
       });
-
-
-
-
-
   }
 
   public getParaId() {

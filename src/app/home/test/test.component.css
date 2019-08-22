@@ -9,9 +9,17 @@
 } */
 
 .correctNum {
-  color:blue;
+  color:lightblue;
+  display: inline;
 }
 
-.incorrectNum {
+.tryNum {
   color:Red;
+  display: inline;
+  padding-left: 30%;
+}
+
+.mat-card {
+  text-align:center;
+  margin-top: 1%;  
 }

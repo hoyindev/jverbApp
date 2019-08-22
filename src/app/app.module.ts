@@ -24,7 +24,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 
 @NgModule({
@@ -62,7 +62,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatSortModule,
     MatSliderModule,
     MatCheckboxModule,
-    MatButtonToggleModule
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

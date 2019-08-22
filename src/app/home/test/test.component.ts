@@ -17,18 +17,19 @@ export class TestComponent implements OnInit {
   shuffleDone: boolean;
   isHidden = true;
   verbTotalNumber: number;
-  verbNumberLeft: number;
-  verbNumberTested: number;
-  incorrectNumber: number;
   correctNumber: number;
+  tryNumber = 0;
   arrayIndex = 0;
+  answer: string;
+  testIsFinished = false;
+  showResult = false;
 
   disabled = false;
   max = 100;
   min = 1;
   step = 1;
   thumbLabel = true;
-  NumberToTest = 10;
+  numberToTest = 10;
 
 
   constructor(private verbService: VerbService) { }
@@ -43,14 +44,12 @@ export class TestComponent implements OnInit {
       data => {
         this.data = data;
         this.verbTotalNumber = this.data.length;
-        this.verbNumberLeft = this.data.length - 1;
-        this.verbNumberTested = 0;
         this.verbArrayForTest = data;
         this.shuffleArray(this.verbArrayForTest);
         this.isDataLoaded = true;
         // console.log(this.data.length);
       });
-    this.incorrectNumber = 0;
+
     this.correctNumber = 0;
 
   }
@@ -79,19 +78,48 @@ export class TestComponent implements OnInit {
   }
 
   go() {
-    console.log('go');
+    // console.log('go');
     this.disabled = true;
     this.isHidden = false;
   }
 
   reset() {
-    console.log('reset');
+    // console.log('reset');
+    this.showResult = false;
     this.disabled = false;
     this.isHidden = true;
+    this.testIsFinished = false;
+    this.shuffleArray(this.verbArrayForTest);
+    this.arrayIndex = 0;
+    this.correctNumber = 0;
+    this.tryNumber = 0;
+    this.numberToTest = 10;
   }
 
   next() {
-    console.log('next');
-    this.arrayIndexIncByOne();
+    // console.log('next');
+    // console.log(this.answer);
+    if (this.answer === this.verbToTest.verbTeForm) {
+      // console.log('you are correct');
+      this.tryNumber++;
+      this.correctNumber++;
+      this.arrayIndexIncByOne();
+      this.answer = '';
+      if (this.arrayIndex === this.numberToTest) {
+        // console.log('test finished');
+        this.testIsFinished = true;
+        this.showResult = true;
+      } else {
+        // console.log('keeping going');
+      }
+    } else {
+      this.tryNumber++;
+    }
+
+  }
+
+  getFailNumber() {
+    const value = this.tryNumber - this.numberToTest;
+    return value;
   }
 }

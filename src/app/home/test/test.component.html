@@ -1,52 +1,55 @@
-<p>number of verbs you tested: {{verbNumberTested}}</p>
-<p>number of verbs left: {{verbNumberLeft}}</p>
-
-<h3>Test</h3>
-
 <div *ngIf="isDataLoaded">
   <mat-card>
     <mat-card-content>
       <h2>Test configuration</h2>
       <p>Right now the total number of verbs in database: {{verbTotalNumber}}</p>
-      <p>I want to test {{NumberToTest}} verbs</p>
-      <section>
-        <!-- <mat-form-field>          
-          <input matInput type="number" placeholder="From 1 to {{verbTotalNumber}}" [(ngModel)]="NumberToTest">
-        </mat-form-field>     -->
-        <mat-slider class="example-margin" [disabled]="disabled" [max]="verbTotalNumber" [min]="min" [step]="step"
-          [thumbLabel]="thumbLabel" [(ngModel)]="NumberToTest">
-        </mat-slider>
+      <p>I want to test {{numberToTest}} verbs</p>
 
-        <mat-button-toggle-group>
-          <mat-button-toggle (click)="go()">Let's Go</mat-button-toggle>
-          <mat-button-toggle (click)="reset()">Reset</mat-button-toggle>
-        </mat-button-toggle-group>
+      <mat-slider class="example-margin" [disabled]="disabled" [max]="verbTotalNumber" [min]="min" [step]="step"
+        [thumbLabel]="thumbLabel" [(ngModel)]="numberToTest">
+      </mat-slider>
 
-      </section>
+      <button mat-raised-button color="accent" (click)="go()">Let's Go</button>
     </mat-card-content>
   </mat-card>
 </div>
 
+<!-- test -->
+<div *ngIf="isDataLoaded">
+  <div *ngIf="!isHidden && !testIsFinished">
+    <div *ngIf="!testIsFinished"></div>
+    <mat-card class="test">
+      <mat-card-content>
+        <p class="correctNum">{{correctNumber}}</p>
+        <p class="tryNum">{{tryNumber}}</p>
+        <p>ID: {{getId()}}</p>
+        <p>{{getVerbToTest().verbEng}}</p>
+        <p>{{getVerbToTest().verbJap}}</p>
+        <!-- <p>{{getVerbToTest().verbTeForm}}</p> -->
 
-<div class="test" *ngIf="isDataLoaded">  
-  <div *ngIf="!isHidden">
-    <p>id: {{getId()}}</p>
-    <p>{{getVerbToTest().verbId}}</p>
-    <p>{{getVerbToTest().verbEng}}</p>
-    <p>{{getVerbToTest().verbJap}}</p>
-    <p>{{getVerbToTest().verbTeForm}}</p>
-    <p class="correctNum">{{correctNumber}}</p>
-    <p class="incorrectNum">{{incorrectNumber}}</p>
-   
+        <form class="answer-form">
+          <mat-form-field>
+            <input name="answer" [(ngModel)]="answer" matInput placeholder="Answer">
+          </mat-form-field>
+          <p>
+            <button mat-raised-button (click)="next()" color="accent" type="submit">Answer</button>
+          </p>
+        </form>
+      </mat-card-content>
+    </mat-card>
 
-
-    <form class="answer-form">
-      <mat-form-field>
-        <input name="answer" matInput placeholder="Answer">
-      </mat-form-field>
-      <p>
-        <button mat-raised-button (click)="next()" color="accent" type="submit">Answer</button>
-      </p>
-    </form>
   </div>
+</div>
+
+<!-- result -->
+<div *ngIf="showResult">
+  <mat-card>
+    <mat-card-content>
+      <p>You tested {{numberToTest}} verbs</p>
+      <p>You completed the test in {{tryNumber}} times</p>
+      <p>You failed {{getFailNumber()}} times</p>
+
+      <button mat-raised-button color="accent" (click)="reset()">Do IT AGAIN</button>
+    </mat-card-content>
+  </mat-card>
 </div>
