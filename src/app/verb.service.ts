@@ -49,11 +49,11 @@ export class VerbService {
 
   public getVerbById(id: number) {
     // console.log('getid: ' + id + `${this.apiURL + '/verbs/' + id}`);
-    return this.httpClient.get<Verb[]>(`${this.apiURL + '/verbs/' + id}`);
+    return this.httpClient.get<Verb[]>(`${this.CORSproxyURL + this.apiURL + '/verbs/' + id}`);
   }
 
   public getVerbs() {
-    return this.httpClient.get<[Verb]>(`${this.apiURL}/verbs`);
+    return this.httpClient.get<[Verb]>(`${this.CORSproxyURL + this.apiURL}/verbs`);
   }
 
 }
