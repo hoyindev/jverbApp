@@ -10,8 +10,8 @@ import { Verb } from 'src/app/verb';
 })
 export class TestComponent implements OnInit {
 
-  data: [Verb];
-  verbArrayForTest: [Verb];
+  data: Verb[];
+  verbArrayForTest: Verb[];
   verbToTest: Verb;
   isDataLoaded: boolean;
   shuffleDone: boolean;

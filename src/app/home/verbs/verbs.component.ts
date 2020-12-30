@@ -58,7 +58,7 @@ export class VerbsComponent implements OnInit, AfterViewInit {
     // console.log('btn clicked');
     this.submitted = true;
     if (this.formGroup.invalid) {
-      // console.log('invalid');
+      console.log('invalid');
       return;
     }
 
@@ -69,7 +69,7 @@ export class VerbsComponent implements OnInit, AfterViewInit {
         verbJap: form.value.formVerbJap,
         verbTeForm: form.value.formVerbTeForm
       };
-      // console.log('form: id ' + input.verbId);
+      console.log('form: id ' + input.verbId);
       this.verbService.insertVerb(input).subscribe(data => {
         alert('success');
         form.resetForm();
